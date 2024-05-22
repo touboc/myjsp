@@ -14,14 +14,16 @@ import net.javaguides.usermanagement.utl.HibernateUtil;
  *
  */
 public class UserDao {
-	
+	Session session = null;
 	/**
 	 * Save User
 	 * @param user
 	 */
 	public void saveUser(User user) {
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
@@ -34,6 +36,9 @@ public class UserDao {
 			}
 			e.printStackTrace();
 		}
+		finally {
+			session.close();
+		}
 	}
 
 	/**
@@ -42,7 +47,8 @@ public class UserDao {
 	 */
 	public void updateUser(User user) {
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
@@ -55,6 +61,9 @@ public class UserDao {
 			}
 			e.printStackTrace();
 		}
+		finally {
+			session.close();
+		}
 	}
 
 	/**
@@ -64,7 +73,8 @@ public class UserDao {
 	public void deleteUser(int id) {
 
 		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 
@@ -83,6 +93,9 @@ public class UserDao {
 			}
 			e.printStackTrace();
 		}
+		finally {
+			session.close();
+		}
 	}
 
 	/**
@@ -94,7 +107,8 @@ public class UserDao {
 
 		Transaction transaction = null;
 		User user = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
@@ -106,6 +120,9 @@ public class UserDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		}
+		finally {
+			session.close();
 		}
 		return user;
 	}
@@ -119,7 +136,8 @@ public class UserDao {
 
 		Transaction transaction = null;
 		List<User> listOfUser = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
@@ -133,6 +151,9 @@ public class UserDao {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		}
+		finally {
+			session.close();
 		}
 		return listOfUser;
 	}

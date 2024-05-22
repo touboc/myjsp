@@ -26,7 +26,7 @@ public class HibernateUtil {
 				// Hibernate settings equivalent to hibernate.cfg.xml's properties
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/demo?useSSL=false");
+				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/demo?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 				settings.put(Environment.USER, "root");
 				settings.put(Environment.PASS, "root");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
@@ -35,7 +35,8 @@ public class HibernateUtil {
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+//				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+				settings.put(Environment.HBM2DDL_AUTO, "update");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(User.class);
