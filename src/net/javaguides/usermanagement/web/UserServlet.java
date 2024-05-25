@@ -14,6 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 import net.javaguides.usermanagement.dao.UserDao;
 import net.javaguides.usermanagement.model.User;
 
+//import org.apache.logging.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
+import org.apache.logging.log4j.Level;
+//import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.appender.ConsoleAppender;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.ConfigurationFactory;
+import org.apache.logging.log4j.core.config.ConfigurationSource;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
+import org.apache.logging.log4j.core.layout.PatternLayout;
+
 /**
  * ControllerServlet.java
  * This servlet acts as a page controller for the application, handling all
@@ -23,10 +39,19 @@ import net.javaguides.usermanagement.model.User;
 
 @WebServlet("/")
 public class UserServlet extends HttpServlet {
+	
+	private static final Logger logger = LogManager.getLogger("HelloWorld");
+	
+//	private static final Logger LOGGER = Logger.getLogger(UserServlet.class.getName());
+	
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
 	
 	public void init() {
+//		PropertyConfigurator.configure("/WEB-INF/resource/log4j.properties");
+		System.out.println(logger.isDebugEnabled());
+		System.out.println("111");
+		logger.debug("Hello, World!");
 		userDao = new UserDao();
 	}
 
