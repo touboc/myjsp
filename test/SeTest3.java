@@ -13,6 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -51,7 +53,7 @@ public class SeTest3 {
          JavascriptExecutor js = (JavascriptExecutor) driver;
          js.executeScript("window.scrollBy(0,350)", "");
     	 
-    	 captureScreen2("C:\\My\\temp\\223.png");
+    	 captureScreen2("C:\\My\\temp\\"+getFileName()+".png");
 
     	 driver.quit();
 		 
@@ -75,6 +77,19 @@ public class SeTest3 {
         RenderedImage image = (RenderedImage)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.imageFlavor);
         ImageIO.write(image, "png", new java.io.File(fileName));
 		}
+	
+	public static String getFileName()  {
+		// Get the current date and time
+		LocalDateTime now = LocalDateTime.now();
+
+		// Define the format
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss_SSS");
+
+		// Format the current date and time
+		String formattedNow = now.format(formatter);
+		
+		return formattedNow;
+	}
 	
 	public static void  write_info(String content) throws IOException{
 		String file_name = "c:\\my\\temp\\test.txt";
